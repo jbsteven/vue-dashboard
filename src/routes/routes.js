@@ -11,61 +11,70 @@ import Icons from 'src/pages/Icons.vue'
 import Maps from 'src/pages/Maps.vue'
 import Notifications from 'src/pages/Notifications.vue'
 import Upgrade from 'src/pages/Upgrade.vue'
+import Login from "@/pages/Login.vue";
 
 const routes = [
   {
-    path: '/',
-    component: DashboardLayout,
-    redirect: '/admin/overview'
+    path: '/login',
+    name: 'Login',
+    component: Login,
   },
   {
-    path: '/admin',
+    path: '/',
     component: DashboardLayout,
-    redirect: '/admin/overview',
+    redirect: '/overview',
+    meta: {requiresAuth: true},
     children: [
       {
         path: 'overview',
         name: 'Overview',
-        component: Overview
+        component: Overview,
+        meta: {requiresAuth: true}
       },
       {
         path: 'user',
         name: 'User',
-        component: UserProfile
+        component: UserProfile,
+        meta: {requiresAuth: true}
       },
       {
         path: 'table-list',
         name: 'Table List',
-        component: TableList
+        component: TableList,
+        meta: {requiresAuth: true}
       },
       {
         path: 'typography',
         name: 'Typography',
-        component: Typography
+        component: Typography,
+        meta: {requiresAuth: true}
       },
       {
         path: 'icons',
         name: 'Icons',
-        component: Icons
+        component: Icons,
+        meta: {requiresAuth: true}
       },
       {
         path: 'maps',
         name: 'Maps',
-        component: Maps
+        component: Maps,
+        meta: {requiresAuth: true}
       },
       {
         path: 'notifications',
         name: 'Notifications',
-        component: Notifications
-      },
-      {
-        path: 'upgrade',
-        name: 'Upgrade to PRO',
-        component: Upgrade
+        component: Notifications,
+        meta: {requiresAuth: true}
       }
     ]
   },
-  { path: '*', component: NotFound }
+  // {
+  //   path: '/:pathMatch(.*)*', // 捕获所有其他路径
+  //   name: 'NotFound',
+  //   component: NotFound,
+  // },
+  { path: '/:pathMatch(.*)*', component: NotFound }
 ]
 
 /**
@@ -76,5 +85,7 @@ function view(name) {
    var res= require('../components/Dashboard/Views/' + name + '.vue');
    return res;
 };**/
+
+
 
 export default routes

@@ -43,7 +43,7 @@
     props: {
       title: {
         type: String,
-        default: 'Vue LBD'
+        default: '模型预测系统'
       },
       backgroundColor: {
         type: String,

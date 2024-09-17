@@ -40,7 +40,14 @@ const router = new VueRouter({
     }
   },
 });
-
+router.beforeEach((to, from, next) => {
+  const isAuthenticated = sessionStorage.getItem('auth');
+  if (to.matched.some(record => record.meta.requiresAuth) && !isAuthenticated) {
+    next('/login');
+  } else {
+    next();
+  }
+});
 /* eslint-disable no-new */
 new Vue({
   el: "#app",
