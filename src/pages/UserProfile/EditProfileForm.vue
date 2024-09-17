@@ -1,6 +1,6 @@
 <template>
   <card>
-    <h4 slot="header" class="card-title">Edit Profile</h4>
+    <h4 slot="header" class="card-title">编辑场景</h4>
     <form>
       <div class="row">
         <div class="col-md-5">
@@ -81,7 +81,7 @@
       <div class="row">
         <div class="col-md-12">
           <div class="form-group">
-            <label>About Me</label>
+            <label>模型预测结果</label>
             <textarea rows="5" class="form-control border-input"
                       placeholder="Here can be your description"
                       v-model="user.aboutMe">
@@ -100,6 +100,7 @@
 </template>
 <script>
   import Card from 'src/components/Cards/Card.vue'
+  import axios from "axios";
 
   export default {
     components: {
@@ -124,6 +125,7 @@
     methods: {
       updateProfile () {
         alert('Your data: ' + JSON.stringify(this.user))
+
       }
     }
   }

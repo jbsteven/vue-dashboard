@@ -8,6 +8,20 @@ function resolveSrc(_path) {
 module.exports = {
   lintOnSave: false,
   configureWebpack: {
+    optimization:{
+      splitChunks:{
+        chunks:'all',
+        maxInitialRequests:Infinity,
+        minSize:20000,
+        maxSize:250000,
+      }
+    },
+    cache:{
+      type:'filesystem',
+      buildDependencies:{
+        config:[__filename],
+      }
+    },
     // Set up all the aliases we use in our app.
     resolve: {
       alias: {
@@ -16,9 +30,9 @@ module.exports = {
       }
     },
     plugins: [
-      new webpack.optimize.LimitChunkCountPlugin({
-        maxChunks: 6
-      })
+      // new webpack.optimize.LimitChunkCountPlugin({
+      //   maxChunks: 6
+      // })
     ]
   },
   pwa: {
